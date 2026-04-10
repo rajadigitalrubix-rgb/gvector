@@ -12,8 +12,8 @@ export const metadata: Metadata = {
   description: "G-Vector Realtech is an institutional-grade real estate advisory firm delivering outcomes built on data, trust, and documented integrity across India.",
   keywords: "real estate advisory, institutional real estate, G-Vector Realtech, Gurgaon, Delhi, investment advisory, corporate real estate",
   icons: {
-    icon: "/gvector-icon-v1.ico",
-    apple: "/gvector-icon-v1.png",
+    icon: "/gold-g-favicon.png",
+    apple: "/gold-g-favicon.png",
   },
   openGraph: {
     title: "G-Vector Realtech | Institutional Real Estate Advisory",
