@@ -45,7 +45,7 @@ const VisionSection = () => {
                 G-Vector Realtech Private Limited was founded by Vivek Arora — an accomplished professional with more than 30 years of extensive experience spanning Product, Sales, Supply Chain, Realty Consulting, and senior leadership. Vivek founded the firm after identifying a clear gap in the Indian marketplace: the absence of a real estate advisory firm that operated with institutional rigor while maintaining the agility of a boutique practice.
               </p>
               <p className="font-jost text-[15px] sm:text-[17px] text-gray-700 leading-[1.65]">
-                Today's clients — whether institutional investors, multinational corporates, or family offices — do not need more brokers. They need advisors who understand their P&L, share their risk tolerance, and bring market intelligence that is genuinely proprietary. G-Vector Realtech was built to be exactly that firm.
+                Today&apos;s clients — whether institutional investors, multinational corporates, or family offices — do not need more brokers. They need advisors who understand their P&amp;L, share their risk tolerance, and bring market intelligence that is genuinely proprietary. G-Vector Realtech was built to be exactly that firm.
               </p>
             </div>
 
@@ -136,10 +136,10 @@ const LeadershipSection = () => {
 
               <div className="space-y-4 mb-8">
                 <p className="font-jost text-[17px] text-white/70 leading-[1.8]">
-                  Led by <strong className="text-white font-semibold">Vivek Arora</strong>, Director & Founder, G-Vector Realtech is built on the principle of Documented Integrity. Vivek's background in multi-sector supply chains and high-value sales has instilled a culture where every claim is backed by data, every strategy is backed by a plan, and every plan is backed by a team that will not rest until the outcome is delivered.
+                  Led by <strong className="text-white font-semibold">Vivek Arora</strong>, Director &amp; Founder, G-Vector Realtech is built on the principle of Documented Integrity. Vivek&apos;s background in multi-sector supply chains and high-value sales has instilled a culture where every claim is backed by data, every strategy is backed by a plan, and every plan is backed by a team that will not rest until the outcome is delivered.
                 </p>
                 <p className="font-jost text-[17px] text-white/55 leading-[1.8]">
-                  Our clients and investors choose to walk this journey with us because of one fundamental reason: TRUST. Trust is the scarcest commodity in today's property world. We do not ask for it. We earn it — through documented advice, transparent processes, and returns that speak for themselves.
+                  Our clients and investors choose to walk this journey with us because of one fundamental reason: TRUST. Trust is the scarcest commodity in today&apos;s property world. We do not ask for it. We earn it — through documented advice, transparent processes, and returns that speak for themselves.
                 </p>
               </div>
 
@@ -536,7 +536,7 @@ const AwardsSection = () => {
               Recognition That<br /><span className="text-[#C5993E]">Speaks for Itself</span>
             </h2>
             <p className="font-jost text-[16px] text-gray-700 leading-[1.8] mb-8">
-              Performance-based validations from India's most credible real estate institutions — not participation trophies.
+              Performance-based validations from India&apos;s most credible real estate institutions — not participation trophies.
             </p>
 
             {/* Memberships — Compact badges */}

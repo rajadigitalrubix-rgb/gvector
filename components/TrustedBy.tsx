@@ -1,7 +1,5 @@
 'use client';
 
-import { motion } from "framer-motion";
-
 const partners = [
   { type: "Headquarters", name: "Global Fintech HQ" },
   { type: "Logistics", name: "National 3PL Provider" },
@@ -21,7 +19,7 @@ const TrustedBy = () => {
           <div className="lg:w-[320px] shrink-0 lg:sticky lg:top-32">
             <h4 className="font-jost text-[12px] font-bold text-[#C5993E] uppercase tracking-[0.3em] mb-3">Institutional Network</h4>
             <h2 className="font-playfair text-[28px] md:text-[34px] text-[#2D2D2D] leading-[1.2]">
-              Trusted by the Industry's <br className="hidden lg:block"/><span className="text-[#C5993E]">Market Leaders</span>
+              Trusted by the Industry&apos;s <br className="hidden lg:block"/><span className="text-[#C5993E]">Market Leaders</span>
             </h2>
             <div className="mt-6 w-12 h-[2px] bg-[#C5993E]" />
             <p className="font-jost text-[16px] text-gray-500 mt-6 leading-relaxed">

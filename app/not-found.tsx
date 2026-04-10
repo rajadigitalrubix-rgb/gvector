@@ -32,7 +32,7 @@ const NotFound = () => (
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5, delay: 0.5 }}
       >
-        The page you're looking for doesn't exist or has been moved. Let us guide you back to G-Vector Realtech.
+        The page you&apos;re looking for doesn&apos;t exist or has been moved. Let us guide you back to G-Vector Realtech.
       </motion.p>
       <motion.div
         initial={{ opacity: 0, y: 20 }}

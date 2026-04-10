@@ -66,6 +66,18 @@ const ContactPage = () => {
 
   const inputClass = "w-full bg-white border border-gray-300 px-4 py-2.5 font-jost text-[16px] text-[#2D2D2D] placeholder:text-gray-500 focus:outline-none focus:border-[#C5993E] transition-colors";
 
+  const contactDetails: {
+    icon: React.ComponentType<{ className?: string }>;
+    label: string;
+    lines: string[];
+    href?: string;
+  }[] = [
+    { icon: Building2, label: "Corporate Office", lines: ["FF 112, 112A, The Clarion Centrum Plaza", "Golf Course Road, Gurgaon, Haryana – 122002"], href: "https://maps.app.goo.gl/dHTheUr9Y6tEucrX8" },
+    { icon: MapPin, label: "Registered Office", lines: ["D-1, Lower Ground Floor, Salcon Rasvilas", "Saket (South Delhi), New Delhi – 110017"] },
+    { icon: Phone, label: "Phone", lines: ["+91 98100 91101"], href: "tel:+919810091101" },
+    { icon: Clock, label: "Business Hours", lines: ["Mon-Fri: 9:00 AM – 6:30 PM", "Sat: By appointment"] },
+  ];
+
   return (
     <>
       <PageHero eyebrow="Contact Us" headline="READY TO ENGINEER YOUR NEXT OUTCOME?" subtitle="Whether you are an investor, a corporate, a developer, or an institution — every conversation with G-Vector starts with listening." image="/images/Gemini_Generated_Image_6e5t8c6e5t8c6e5t (1).png" />
@@ -130,12 +142,7 @@ const ContactPage = () => {
                 <span className="font-jost text-[17px] font-bold uppercase tracking-[0.2em] text-[#C5993E]">Contact Details</span>
               </div>
               <div className="space-y-4 flex-1">
-                {[
-                  { icon: Building2, label: "Corporate Office", lines: ["FF 112, 112A, The Clarion Centrum Plaza", "Golf Course Road, Gurgaon, Haryana – 122002"], href: "https://maps.app.goo.gl/dHTheUr9Y6tEucrX8" },
-                  { icon: MapPin, label: "Registered Office", lines: ["D-1, Lower Ground Floor, Salcon Rasvilas", "Saket (South Delhi), New Delhi – 110017"] },
-                  { icon: Phone, label: "Phone", lines: ["+91 98100 91101"], href: "tel:+919810091101" },
-                  { icon: Clock, label: "Business Hours", lines: ["Mon-Fri: 9:00 AM – 6:30 PM", "Sat: By appointment"] },
-                ].map((item) => (
+                {contactDetails.map((item) => (
                   <div key={item.label} className="flex gap-4">
                     <div className="w-10 h-10 bg-[#C5993E] flex items-center justify-center shrink-0">
                       <item.icon className="w-4 h-4 text-white" />
@@ -144,7 +151,7 @@ const ContactPage = () => {
                       <p className="font-jost text-[16px] font-bold text-[#C5993E]/60 uppercase tracking-wider mb-0.5">{item.label}</p>
                       {item.lines.map((ln) => (
                         <p key={ln} className="font-jost text-[17px] text-gray-700 leading-[1.6]">
-                          {(item as any).href ? <a href={(item as any).href} className="hover:text-[#C5993E] transition-colors">{ln}</a> : ln}
+                          {item.href ? <a href={item.href} className="hover:text-[#C5993E] transition-colors">{ln}</a> : ln}
                         </p>
                       ))}
                     </div>

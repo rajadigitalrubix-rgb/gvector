@@ -6,7 +6,7 @@ import PageHero from "@/components/PageHero";
 import CTABanner from "@/components/CTABanner";
 import usePageMeta from "@/hooks/use-page-meta";
 
-export const caseStudies = [
+const caseStudies = [
   {
     category: "Corporate Real Estate",
     title: 'The "Golf Course Road" High-Stakes Relocation',

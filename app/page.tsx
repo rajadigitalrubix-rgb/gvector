@@ -199,7 +199,7 @@ const PhilosophySection = () => {
         >
           <div className="flex items-center justify-center gap-3 mb-6">
             <span className="w-8 h-[2px] bg-[#C5993E]" />
-            <span className="font-jost text-[10px] font-bold uppercase tracking-[0.3em] text-[#C5993E]">The "Why"</span>
+            <span className="font-jost text-[10px] font-bold uppercase tracking-[0.3em] text-[#C5993E]">The &ldquo;Why&rdquo;</span>
             <span className="w-8 h-[2px] bg-[#C5993E]" />
           </div>
           <h2 className="font-playfair text-[32px] md:text-[38px] text-[#2D2D2D] leading-[1.2] mb-6 md:mb-8">
@@ -211,13 +211,13 @@ const PhilosophySection = () => {
             <span className="absolute -top-4 md:-top-6 left-1/2 -translate-x-1/2 font-playfair text-[60px] md:text-[80px] text-[#C5993E]/[0.08] leading-none select-none pointer-events-none">&ldquo;</span>
             <div className="max-w-full mx-auto text-center space-y-4 md:space-y-6 pt-4">
               <p className="font-jost text-[15px] md:text-[18px] lg:text-[20px] text-gray-700 leading-[1.6] md:leading-[1.7]">
-                In a market defined by rapid urbanization and digital disruption, <strong>"gut feeling" is no longer a viable business strategy.</strong> At G-Vector Realtech, we operate at the precise intersection of <strong>Physical Assets</strong> and <strong>Digital Infrastructure.</strong>
+                In a market defined by rapid urbanization and digital disruption, <strong>&ldquo;gut feeling&rdquo; is no longer a viable business strategy.</strong> At G-Vector Realtech, we operate at the precise intersection of <strong>Physical Assets</strong> and <strong>Digital Infrastructure.</strong>
               </p>
               <p className="font-jost text-[15px] md:text-[18px] lg:text-[20px] text-gray-700 leading-[1.6] md:leading-[1.7]">
                 Based in the corporate heart of <strong>Gurugram (Gurgaon)</strong>, we have witnessed the transformation of the <strong>National Capital Region (NCR)</strong> into a global business powerhouse. We have taken the lessons learned from this micro-market—the need for unbreachable legal rigor, the importance of transit connectivity (exemplified by the <strong>Rapid Metro</strong> corridor), and the demand for <strong>24/7 IT resilience</strong>—and scaled them into a robust <strong>Pan-India delivery model.</strong>
               </p>
               <p className="font-jost text-[15px] md:text-[18px] lg:text-[20px] text-gray-700 leading-[1.6] md:leading-[1.7]">
-                This is why the firm structure breaks the traditional mold. We don't just employ brokers; we employ chartered surveyors, IT systems architects, and PMO specialists. This is the DNA of G-Vector Realtech. <strong className="text-[#2D2D2D]">We don't ask to be trusted—we provide the math that proves we should be trusted.</strong>
+                This is why the firm structure breaks the traditional mold. We don&apos;t just employ brokers; we employ chartered surveyors, IT systems architects, and PMO specialists. This is the DNA of G-Vector Realtech. <strong className="text-[#2D2D2D]">We don&apos;t ask to be trusted-we provide the math that proves we should be trusted.</strong>
               </p>
             </div>
           </div>
@@ -298,7 +298,7 @@ const PillarsSection = () => {
           {pillars.map((p, i) => (
             <motion.div
               key={p.title}
-              className="bg-white border border-gray-300/80 shadow-[0_4px_24px_rgba(0,0,0,0.04)] hover:shadow-[0_20px_60px_rgba(0,0,0,0.08)] hover:-translate-y-2 transition-all duration-500 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] group overflow-hidden"
+              className="bg-white border border-gray-300/80 shadow-[0_4px_24px_rgba(0,0,0,0.04)] hover:shadow-[0_20px_60px_rgba(0,0,0,0.08)] hover:-translate-y-2 transition-all duration-500 ease-premium group overflow-hidden"
               initial={{ opacity: 0, y: 20 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.4, delay: 0.1 + i * 0.08 }}
@@ -485,7 +485,7 @@ const CaseStudySection = () => {
           {caseStudies.map((cs, i) => (
             <motion.div
               key={cs.title}
-              className="bg-white border border-gray-300 overflow-hidden group hover:shadow-[0_20px_60px_rgba(0,0,0,0.08)] hover:-translate-y-2 transition-all duration-500 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
+              className="bg-white border border-gray-300 overflow-hidden group hover:shadow-[0_20px_60px_rgba(0,0,0,0.08)] hover:-translate-y-2 transition-all duration-500 ease-premium"
               initial={{ opacity: 0, y: 24 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.4, delay: 0.1 + i * 0.08 }}
@@ -565,7 +565,7 @@ const cities = ["Mumbai", "Bangalore", "Hyderabad", "Pune", "Chennai", "Kolkata"
           {offices.map((o, i) => (
             <motion.div
               key={o.name}
-              className="bg-white border border-gray-300 overflow-hidden group hover:shadow-[0_20px_60px_rgba(0,0,0,0.08)] transition-all duration-500 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
+              className="bg-white border border-gray-300 overflow-hidden group hover:shadow-[0_20px_60px_rgba(0,0,0,0.08)] transition-all duration-500 ease-premium"
               initial={{ opacity: 0, y: 20 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.4, delay: 0.1 + i * 0.08 }}

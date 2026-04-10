@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, ChevronRight, ArrowRight, Home } from "lucide-react";
+import { Menu, X, ChevronRight, ArrowRight } from "lucide-react";
 
 const navLinks = [
   { label: "Home",          href: "/" },
@@ -25,8 +25,6 @@ const Navbar = () => {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
-
-  useEffect(() => setMobileMenuOpen(false), [pathname]);
 
   useEffect(() => {
     document.body.style.overflow = mobileMenuOpen ? "hidden" : "";
