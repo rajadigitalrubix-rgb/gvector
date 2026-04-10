@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     title: "G-Vector Realtech | Institutional Real Estate Advisory",
     description: "Institutional-grade real estate advisory firm delivering outcomes built on data, trust, and documented integrity across India.",
     type: "website",
-    url: "https://gvectorrealtech.com",
+    url: "https://gvector.in",
   },
 };
 

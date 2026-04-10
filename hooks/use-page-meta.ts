@@ -48,7 +48,7 @@ const usePageMeta = (titleOrOptions: string | PageMetaOptions, description?: str
     // Canonical
     let linkCanonical = document.querySelector('link[rel="canonical"]') as HTMLLinkElement | null;
     if (canonical) {
-      const siteUrl = "https://gvectorrealtech.com";
+      const siteUrl = "https://gvector.in";
       if (!linkCanonical) {
         linkCanonical = document.createElement("link");
         linkCanonical.setAttribute("rel", "canonical");

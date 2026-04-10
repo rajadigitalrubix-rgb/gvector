@@ -13,4 +13,4 @@ Allow: /
 User-agent: *
 Allow: /
 
-Sitemap: https://gvectorrealtech.com/sitemap.xml
+Sitemap: https://gvector.in/sitemap.xml

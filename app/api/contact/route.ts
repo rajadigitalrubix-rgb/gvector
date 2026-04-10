@@ -66,11 +66,14 @@ export async function POST(request: NextRequest) {
             user: process.env.SMTP_USER,
             pass: process.env.SMTP_PASS,
           },
+          tls: {
+            rejectUnauthorized: false
+          }
         });
         
         // 1. Email to Admin (You)
         const adminMailOptions = {
-          from: `"G-Vector Website Leads" <${process.env.SMTP_USER}>`,
+          from: `"G-Vector Leads" <${process.env.SMTP_USER}>`,
           to: process.env.ADMIN_EMAIL || process.env.SMTP_USER,
           subject: `New Enquiry: ${interest} - ${name}`,
           text: `New Lead captured via website.\n\nName: ${name}\nCompany: ${company || 'N/A'}\nEmail: ${email}\nPhone: ${phone || 'N/A'}\nArea of Interest: ${interest}\nMessage/Brief:\n${message || 'N/A'}\n\nSubmitted timestamp: ${new Date().toLocaleString()}`
@@ -81,17 +84,17 @@ export async function POST(request: NextRequest) {
           from: `"G-Vector Realtech" <${process.env.SMTP_USER}>`,
           to: email,
           subject: `Thank you for contacting G-Vector Realtech`,
-          text: `Dear ${name},\n\nThank you for reaching out to G-Vector Realtech regarding your interest in ${interest}. We have successfully received your enquiry.\n\nOur advisory team is reviewing your requirements and will be in touch with you shortly to schedule a strategy session.\n\nBest Regards,\nThe G-Vector Realtech Team\ncontact@gvectorrealtech.com`
+          text: `Dear ${name},\n\nThank you for reaching out to G-Vector Realtech regarding your interest in ${interest}. We have successfully received your enquiry.\n\nOur advisory team is reviewing your requirements and will be in touch with you shortly to schedule a strategy session.\n\nBest Regards,\nThe G-Vector Realtech Team\ncontact@gvector.in`
         };
 
-        // Fire emails asynchronously
-        Promise.all([
+        // Add await to ensure emails are sent before the function finishes
+        await Promise.all([
           transporter.sendMail(adminMailOptions),
           transporter.sendMail(clientMailOptions)
-        ]).catch(err => console.error("Nodemailer SMTP sending error:", err));
+        ]);
 
-      } catch (mailConfigError) {
-        console.error("Nodemailer configuration error:", mailConfigError);
+      } catch (mailError) {
+        console.error("Nodemailer SMTP error:", mailError);
       }
     }
     // -----------------------------------------------------------
