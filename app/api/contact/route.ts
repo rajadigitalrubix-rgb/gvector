@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import mongoose from 'mongoose';
 import nodemailer from 'nodemailer';
+import { getAdminEmailHTML, getClientReceiptHTML } from '@/lib/email-templates';
 
 // Global connection state for serverless environments
 let isConnected = false;
@@ -71,20 +72,20 @@ export async function POST(request: NextRequest) {
           }
         });
         
-        // 1. Email to Admin (You)
+        // 1. Email to Admin (The Professional Lead)
         const adminMailOptions = {
           from: `"G-Vector Leads" <${process.env.SMTP_USER}>`,
           to: process.env.ADMIN_EMAIL || process.env.SMTP_USER,
-          subject: `New Enquiry: ${interest} - ${name}`,
-          text: `New Lead captured via website.\n\nName: ${name}\nCompany: ${company || 'N/A'}\nEmail: ${email}\nPhone: ${phone || 'N/A'}\nArea of Interest: ${interest}\nMessage/Brief:\n${message || 'N/A'}\n\nSubmitted timestamp: ${new Date().toLocaleString()}`
+          subject: `New Strategic Enquiry: ${interest} - ${name}`,
+          html: getAdminEmailHTML({ name, company, email, phone, interest, message })
         };
 
-        // 2. Thank You Receipt to Client
+        // 2. Professional Receipt to Client
         const clientMailOptions = {
           from: `"G-Vector Realtech" <${process.env.SMTP_USER}>`,
           to: email,
           subject: `Thank you for contacting G-Vector Realtech`,
-          text: `Dear ${name},\n\nThank you for reaching out to G-Vector Realtech regarding your interest in ${interest}. We have successfully received your enquiry.\n\nOur advisory team is reviewing your requirements and will be in touch with you shortly to schedule a strategy session.\n\nBest Regards,\nThe G-Vector Realtech Team\ncontact@gvector.in`
+          html: getClientReceiptHTML(name, interest)
         };
 
         // Add await to ensure emails are sent before the function finishes
