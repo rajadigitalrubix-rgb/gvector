@@ -2,7 +2,7 @@
 
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { ArrowRight, Users, Award, BarChart3, Shield, Target, CheckCircle, DollarSign, Map, Key, Factory, ShoppingBag, ShoppingCart, Globe, Warehouse, Radio, Landmark, Tv, Monitor, Trophy, Home, Building2 } from "lucide-react";
+import { ArrowRight, Users, Award, BarChart3, Shield, Target, CheckCircle, DollarSign, Map, Key, Factory, ShoppingBag, ShoppingCart, Globe, Warehouse, Radio, Landmark, Tv, Monitor, Home, Building2 } from "lucide-react";
 import Link from "next/link";
 import PageHero from "@/components/PageHero";
 import CTABanner from "@/components/CTABanner";
@@ -426,164 +426,7 @@ const SectorsSection = () => {
   );
 };
 
-/* ═══════════════════════════════════════════
-   7 · PARTNERSHIPS  (Premium marquee layout)
-   ═══════════════════════════════════════════ */
-const PartnershipsSection = () => {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-60px" });
 
-  const partners = [
-    "SARE Homes", "SS Group", "Godrej Properties", "Tapasya",
-    "DLF", "Spaze", "Tulip", "Vatika",
-    "Ireo", "M3M", "Tata Housing", "Supertech"
-  ];
-
-  return (
-    <section className="py-12 md:py-20 bg-[#ECEAE6] border-t border-gray-300">
-      <div ref={ref} className="max-w-[1440px] mx-auto px-4 md:px-12">
-        {/* Header */}
-        <motion.div
-          className="text-center mb-14"
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.4 }}
-        >
-          <div className="flex items-center justify-center gap-3 mb-4">
-            <span className="w-10 h-[2px] bg-[#C5993E]" />
-            <span className="font-jost text-[16px] font-bold uppercase tracking-[0.25em] text-[#C5993E]">Key Partnerships</span>
-            <span className="w-10 h-[2px] bg-[#C5993E]" />
-          </div>
-          <h2 className="font-playfair text-[32px] md:text-[42px] text-[#2D2D2D]">
-            Our Trusted Developer <span className="text-[#C5993E]">Partners</span>
-          </h2>
-        </motion.div>
-
-        {/* Partner names — flowing text layout with generous spacing */}
-        <motion.div
-          className="flex flex-wrap items-center justify-center gap-x-4 gap-y-4 md:gap-x-8 md:gap-y-7 max-w-[1100px] mx-auto mb-10"
-          initial={{ opacity: 0 }}
-          animate={inView ? { opacity: 1 } : {}}
-          transition={{ duration: 0.5, delay: 0.15 }}
-        >
-          {partners.map((p, i) => (
-            <div key={p} className="flex items-center gap-4 md:gap-8">
-              <span className="font-playfair text-[17px] md:text-[24px] text-[#2D2D2D] whitespace-nowrap">
-                {p}
-              </span>
-              {i < partners.length - 1 && (
-                <span className="w-[4px] h-[4px] bg-[#C5993E]/50 rounded-full shrink-0" />
-              )}
-            </div>
-          ))}
-        </motion.div>
-
-        {/* Godrej authorization — elegant strip */}
-        <motion.div
-          className="bg-[#2D2D2D] py-4 px-6 text-center mx-auto"
-          initial={{ opacity: 0, y: 10 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.4, delay: 0.3 }}
-        >
-          <p className="font-jost text-[12px] sm:text-[17px] text-white/80 uppercase tracking-[0.15em] sm:tracking-[0.25em]">
-            G-Vector Realtech is an Authorised Channel Partner of <strong className="text-[#C5993E]">Godrej Properties Ltd.</strong>
-          </p>
-        </motion.div>
-      </div>
-    </section>
-  );
-};
-
-/* ═══════════════════════════════════════════
-   8 · AWARDS  (Compact premium strip)
-   ═══════════════════════════════════════════ */
-const AwardsSection = () => {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-60px" });
-
-  const awards = [
-    { year: "2015", title: "Gold Performance Award — Tapasya" },
-    { year: "2010–2014", title: "SARE Homes Excellence Award (4 Consecutive Years)" },
-    { year: "2015", title: "Legend of SARE — Sustained Leadership" },
-    { year: "2014", title: "Property Consultant of the Year — BCI (National)" },
-    { year: "2013–2015", title: "Lead Realty Partner — SS Group" },
-    { year: "2015", title: "Certificate of Excellence — Supertech" },
-    { year: "2012", title: "Global Vision Award — 21st Century Super Leader" },
-  ];
-
-  const memberships = [
-    "ACRI Life Member",
-    "REDCO-Haryana Member",
-    "NAR India Member",
-  ];
-
-  return (
-    <section className="py-12 md:py-20 bg-white border-b border-gray-100">
-      <div ref={ref} className="max-w-[1440px] mx-auto px-4 lg:px-12">
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_1fr] gap-12 lg:gap-20 items-start">
-          
-          {/* Left — Header + Memberships */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.5 }}
-          >
-            <div className="flex items-center gap-3 mb-4">
-              <span className="w-10 h-[2px] bg-[#C5993E]" />
-              <span className="font-jost text-[17px] font-bold uppercase tracking-[0.25em] text-[#C5993E]">Awards & Recognition</span>
-            </div>
-            <h2 className="font-playfair text-[34px] md:text-[46px] text-[#2D2D2D] leading-[1.1] mb-5">
-              Recognition That<br /><span className="text-[#C5993E]">Speaks for Itself</span>
-            </h2>
-            <p className="font-jost text-[16px] text-gray-700 leading-[1.8] mb-8">
-              Performance-based validations from India&apos;s most credible real estate institutions — not participation trophies.
-            </p>
-
-            {/* Memberships — Compact badges */}
-            <div className="flex flex-wrap gap-3">
-              {memberships.map((m) => (
-                <div key={m} className="flex items-center gap-2 bg-white border border-gray-300 px-4 py-2.5 hover:border-[#C5993E]/40 transition-colors duration-300">
-                  <Trophy className="w-3.5 h-3.5 text-[#C5993E]" />
-                  <span className="font-jost text-[16px] font-bold uppercase tracking-[0.15em] text-[#2D2D2D]">{m}</span>
-                </div>
-              ))}
-            </div>
-
-            {/* Future Vision — Inline */}
-            <div className="mt-10 pt-8 border-t border-gray-300">
-              <p className="font-jost text-[16px] text-gray-700 leading-[1.8]">
-                <strong className="text-[#C5993E] font-semibold">Going Forward:</strong> G-Vector Realtech aims to scale its advisory practice to serve Institutional Investors, Developers, and Corporate Houses at a national level — expanding across Asset Management, Land Services, and Investment Advisory.
-              </p>
-            </div>
-          </motion.div>
-
-          {/* Right — Awards Table */}
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={inView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.5, delay: 0.15 }}
-          >
-            <div className="border-t border-gray-300">
-              {awards.map((a, i) => (
-                <motion.div
-                  key={a.title}
-                  className="flex items-center gap-5 py-4 border-b border-gray-300 group hover:bg-white hover:pl-2 transition-all duration-300"
-                  initial={{ opacity: 0 }}
-                  animate={inView ? { opacity: 1 } : {}}
-                  transition={{ duration: 0.3, delay: 0.2 + i * 0.04 }}
-                >
-                  <Trophy className="w-3.5 h-3.5 text-[#C5993E] shrink-0" />
-                  <span className="font-jost text-[17px] font-bold text-[#C5993E] uppercase tracking-wider w-[95px] shrink-0">{a.year}</span>
-                  <span className="font-jost text-[16px] text-[#2D2D2D] group-hover:text-[#C5993E] transition-colors">{a.title}</span>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-        </div>
-      </div>
-    </section>
-  );
-};
 
 /* ═══════════════════════════════════════════
    9 · GROUP COMPANIES  (Premium split layout)
@@ -691,8 +534,6 @@ const AboutPage = () => {
       <ValuesSection />
       <ExpertiseSection />
       <SectorsSection />
-      <PartnershipsSection />
-      <AwardsSection />
       <GroupCompaniesSection />
       <CTABanner />
     </>
