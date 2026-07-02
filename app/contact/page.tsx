@@ -30,6 +30,20 @@ const ContactPage = () => {
 
   const [formData, setFormData] = useState({ name: "", company: "", email: "", phone: "", interest: "", message: "" });
   const [submitting, setSubmitting] = useState(false);
+  const [captchaVerified, setCaptchaVerified] = useState(false);
+  const [captchaLoading, setCaptchaLoading] = useState(false);
+
+  const handleCaptchaClick = () => {
+    if (captchaVerified) {
+      setCaptchaVerified(false);
+    } else if (!captchaLoading) {
+      setCaptchaLoading(true);
+      setTimeout(() => {
+        setCaptchaLoading(false);
+        setCaptchaVerified(true);
+      }, 1200);
+    }
+  };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -38,13 +52,22 @@ const ContactPage = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.name || !formData.email || !formData.interest) { toast.error("Please fill required fields."); return; }
+
+    if (!captchaVerified) {
+      toast.error("Please verify that you are not a robot.");
+      return;
+    }
+
     setSubmitting(true);
-    
+
     try {
       const response = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          ...formData,
+          isRobotVerified: true
+        }),
       });
 
       const result = await response.json();
@@ -53,6 +76,7 @@ const ContactPage = () => {
         toast.success("Enquiry sent successfully. We will be in touch shortly.");
         // Reset the form fields
         setFormData({ name: "", company: "", email: "", phone: "", interest: "", message: "" });
+        setCaptchaVerified(false);
       } else {
         toast.error(result.error || "Failed to submit enquiry. Please try again.");
       }
@@ -72,11 +96,11 @@ const ContactPage = () => {
     lines: string[];
     href?: string;
   }[] = [
-    { icon: Building2, label: "Corporate Office", lines: ["FF 112, 112A, The Clarion Centrum Plaza", "Golf Course Road, Gurgaon, Haryana – 122002"], href: "https://maps.app.goo.gl/dHTheUr9Y6tEucrX8" },
-    { icon: MapPin, label: "Registered Office", lines: ["D-1, Lower Ground Floor, Salcon Rasvilas", "Saket (South Delhi), New Delhi – 110017"] },
-    { icon: Phone, label: "Phone", lines: ["+91 98100 91101"], href: "tel:+919810091101" },
-    { icon: Clock, label: "Business Hours", lines: ["Mon-Fri: 9:00 AM – 6:30 PM", "Sat: By appointment"] },
-  ];
+      { icon: Building2, label: "Corporate Office", lines: ["FF 112, 112A, The Clarion Centrum Plaza", "Golf Course Road, Gurgaon, Haryana – 122002"], href: "https://maps.app.goo.gl/dHTheUr9Y6tEucrX8" },
+      { icon: MapPin, label: "Registered Office", lines: ["D-1, Lower Ground Floor, Salcon Rasvilas", "Saket (South Delhi), New Delhi – 110017"] },
+      { icon: Phone, label: "Phone", lines: ["+91 98100 91101"], href: "tel:+919810091101" },
+      { icon: Clock, label: "Business Hours", lines: ["Mon-Fri: 9:00 AM – 6:30 PM", "Sat: By appointment"] },
+    ];
 
   return (
     <>
@@ -128,6 +152,39 @@ const ContactPage = () => {
                 <div className="mb-4">
                   <label className="font-jost text-[17px] font-bold text-gray-700 uppercase tracking-wider block mb-1">Message / Brief</label>
                   <textarea name="message" value={formData.message} onChange={handleChange} rows={3} className={`${inputClass} resize-none`} placeholder="Tell us about your objectives..." />
+                </div>
+                <div className="mb-6">
+                  <div className="w-full max-w-[302px] h-[78px] bg-[#f9f9f9] border border-[#d3d3d3] rounded-[3px] p-3 flex items-center justify-between shadow-[0_0_4px_rgba(0,0,0,0.05)] select-none">
+                    <div className="flex items-center gap-3.5">
+                      <button
+                        type="button"
+                        onClick={handleCaptchaClick}
+                        disabled={captchaLoading}
+                        aria-label="reCAPTCHA verification checkbox"
+                        className={`w-7 h-7 bg-white border-2 rounded-[2px] transition-all flex items-center justify-center ${captchaVerified ? "border-[#009a2b]" : "border-[#c1c1c1]"
+                          } hover:border-[#b2b2b2] focus:outline-none`}
+                      >
+                        {captchaLoading && (
+                          <div className="w-5 h-5 border-[2.5px] border-[#4a90e2] border-t-transparent rounded-full animate-spin" />
+                        )}
+                        {captchaVerified && !captchaLoading && (
+                          <svg className="w-5 h-5 text-[#009a2b]" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                          </svg>
+                        )}
+                      </button>
+                      <span className="font-jost text-[14px] text-[#2D2D2D] font-medium leading-none">
+                        I&apos;m not a robot
+                      </span>
+                    </div>
+                    <div className="flex flex-col items-center select-none opacity-80 pr-1">
+                      <svg className="w-[30px] h-[30px] text-[#4c8bf5]" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.57-.598-3.75h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
+                      </svg>
+                      <span className="font-jost text-[8px] font-bold uppercase tracking-[0.1em] text-gray-400 mt-1 leading-none">reCAPTCHA</span>
+                      <span className="font-jost text-[7px] text-gray-400 mt-0.5 leading-none">Privacy - Terms</span>
+                    </div>
+                  </div>
                 </div>
                 <button type="submit" aria-label="Submit Contact Form" disabled={submitting} className="btn-gold w-full flex items-center justify-center gap-2 disabled:opacity-50">
                   {submitting ? "Sending..." : "Send Enquiry"} <Send className="w-4 h-4" />

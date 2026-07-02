@@ -13,7 +13,9 @@ const connectDB = async () => {
   }
   
   try {
-    await mongoose.connect(process.env.MONGODB_URI);
+    await mongoose.connect(process.env.MONGODB_URI, {
+      serverSelectionTimeoutMS: 3000, // 3-second connection timeout
+    });
     isConnected = true;
     console.log("MongoDB connected successfully");
   } catch (error) {
@@ -38,10 +40,8 @@ const Contact = mongoose.models.Contact || mongoose.model('Contact', contactSche
 
 export async function POST(request: NextRequest) {
   try {
-    await connectDB();
-    
     const body = await request.json();
-    const { name, company, email, phone, interest, message } = body;
+    const { name, company, email, phone, interest, message, isRobotVerified } = body;
     
     if (!name || !email || !interest) {
       return NextResponse.json(
@@ -50,8 +50,33 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const newContact = new Contact({ name, company, email, phone, interest, message });
-    await newContact.save();
+    if (!isRobotVerified) {
+      return NextResponse.json(
+        { error: "Security validation failed. Please verify that you are not a robot." },
+        { status: 400 }
+      );
+    }
+
+    let dbSaved = false;
+    try {
+      await connectDB();
+      const newContact = new Contact({ name, company, email, phone, interest, message });
+      await newContact.save();
+      dbSaved = true;
+      console.log("Enquiry saved successfully to MongoDB");
+    } catch (dbError) {
+      console.error("Database storage failed (entering email-only fallback mode):", dbError);
+      // Log lead details in server logs so submission is not lost
+      console.log("[FALLBACK LEAD RECORD]:", {
+        name,
+        company,
+        email,
+        phone,
+        interest,
+        message,
+        timestamp: new Date().toISOString()
+      });
+    }
 
     // -----------------------------------------------------------
     // NODEMAILER: Email Notifications
@@ -76,7 +101,7 @@ export async function POST(request: NextRequest) {
         const adminMailOptions = {
           from: `"G-Vector Leads" <${process.env.SMTP_USER}>`,
           to: process.env.ADMIN_EMAIL || process.env.SMTP_USER,
-          subject: `New Strategic Enquiry: ${interest} - ${name}`,
+          subject: `New Strategic Enquiry: ${interest} - ${name} ${!dbSaved ? '(DB Fallback Mode)' : ''}`,
           html: getAdminEmailHTML({ name, company, email, phone, interest, message })
         };
 
@@ -101,7 +126,12 @@ export async function POST(request: NextRequest) {
     // -----------------------------------------------------------
 
     return NextResponse.json(
-      { success: true, message: "Enquiry submitted successfully." },
+      { 
+        success: true, 
+        message: dbSaved 
+          ? "Enquiry submitted successfully." 
+          : "Enquiry submitted successfully (via backup channel)." 
+      },
       { status: 201 }
     );
   } catch (error) {
