@@ -104,7 +104,7 @@ const Footer = () => {
                 </div>
 
                 <div>
-                  <p className="font-jost text-[12px] font-bold text-[#C5993E] uppercase tracking-wider mb-1.5">Registered Office :</p>
+                  <p className="font-jost text-[12px] font-bold text-[#C5993E] uppercase tracking-wider mb-1.5">Registered Office</p>
                   <p className="font-jost text-[13px] text-white/70 leading-snug">
                     D-1, Lower Ground Floor, Salcon Rasvilas,<br />Saket, New Delhi 110017
                   </p>
